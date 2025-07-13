@@ -250,57 +250,35 @@ public class AzkarActivity extends AppCompatActivity  {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                this.finish();
-                break;
+        int id = item.getItemId();
 
-            case R.id.action_share:
-
-                doShare();
-
-                break;
-
-            case R.id.copy:
-                String text = ziker.getAzkar() + "- " + ziker.getName();
-                copyToClipBoard(text);
-                Toast.makeText(getApplicationContext(),
-                        getResources().getString(R.string.copy_msg),
-                        Toast.LENGTH_LONG).show();
-                break;
-            case R.id.action_favorite:
-                if (ziker.getFav().equals("0")) {
-                    ziker.setFav("1");
-                    db.updateAzkar(ziker);
-                    item.setIcon(R.mipmap.fav);
-                } else if (ziker.getFav().equals("1")) {
-                    ziker.setFav("0");
-                    db.updateAzkar(ziker);
-                    item.setIcon(R.mipmap.not_fav);
-
-
-
-
-                }
-                break;
-
-            case R.id.menu_overflow:
-                //just override click
-                return true;
-
-
-
-
-
+        if (id == android.R.id.home) {
+            this.finish();
+        } else if (id == R.id.action_share) {
+            doShare();
+        } else if (id == R.id.copy) {
+            String text = ziker.getAzkar() + "- " + ziker.getName();
+            copyToClipBoard(text);
+            Toast.makeText(getApplicationContext(),
+                    getResources().getString(R.string.copy_msg),
+                    Toast.LENGTH_LONG).show();
+        } else if (id == R.id.action_favorite) {
+            if (ziker.getFav().equals("0")) {
+                ziker.setFav("1");
+                db.updateAzkar(ziker);
+                item.setIcon(R.mipmap.fav);
+            } else if (ziker.getFav().equals("1")) {
+                ziker.setFav("0");
+                db.updateAzkar(ziker);
+                item.setIcon(R.mipmap.not_fav);
+            }
+        } else if (id == R.id.menu_overflow) {
+            // just override click
+            return true;
         }
-
 
         return true;
     }
-
 
 
 }

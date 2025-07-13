@@ -86,7 +86,7 @@ public class AboutActivity extends AppCompatActivity  {
 
         websitwaleed.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://t.co/beu9yzisk9" )));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.walid.appmuslim" )));
 
             }
         });

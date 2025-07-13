@@ -148,118 +148,82 @@ public class CategoryActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
+        int id = view.getId();
 
+        if (id == R.id.button0) {
+            Intent Dashboard = new Intent(CategoryActivity.this, MainActivity.class);
+            SystemClock.sleep(300);
+            startActivity(Dashboard);
+            onBackPressed();
 
-            case R.id.button0:
-                Intent Dashboard = new Intent(CategoryActivity.this,
-                        MainActivity.class);
-                SystemClock.sleep(300);
-                startActivity(Dashboard);
-                onBackPressed();
-                break;
+        } else if (id == R.id.button1) {
+            Intent allazkars = new Intent(CategoryActivity.this, AzkarsActivity.class);
+            allazkars.putExtra("mode", "allAzakers");
+            SystemClock.sleep(300);
+            startActivity(allazkars);
+            onBackPressed();
 
-            case R.id.button1:
+        } else if (id == R.id.button2) {
+            Intent quranmian = new Intent(CategoryActivity.this, Quranlist.class);
+            SystemClock.sleep(300);
+            startActivity(quranmian);
+            onBackPressed();
 
-                Intent allazkars = new Intent(CategoryActivity.this,
-                        AzkarsActivity.class);
-                allazkars.putExtra("mode", "allAzakers");
-                SystemClock.sleep(300);
-                startActivity(allazkars);
-                onBackPressed();
-                break;
-            case R.id.button2:
-                Intent quranmian = new Intent(CategoryActivity.this,
-                        Quranlist.class);
-                SystemClock.sleep(300);
-                startActivity(quranmian);
-                onBackPressed();
+        } else if (id == R.id.button3) {
+            Intent favorites = new Intent(CategoryActivity.this, AzkarsActivity.class);
+            SystemClock.sleep(300);
+            favorites.putExtra("mode", "isFavorite");
+            startActivity(favorites);
+            onBackPressed();
 
-                break;
-            case R.id.button3:
-                Intent favorites = new Intent(CategoryActivity.this,
-                        AzkarsActivity.class);
-                SystemClock.sleep(300);
-                favorites.putExtra("mode", "isFavorite");
-                startActivity(favorites);
-                onBackPressed();
+        } else if (id == R.id.button4) {
+            Intent category = new Intent(CategoryActivity.this, CategoryActivity.class);
+            SystemClock.sleep(300);
+            startActivity(category);
+            onBackPressed();
 
-                break;
-            case R.id.button4:
-                Intent category = new Intent(CategoryActivity.this,
-                        CategoryActivity.class);
-                SystemClock.sleep(300);
-                startActivity(category);
-                onBackPressed();
+        } else if (id == R.id.button5) {
+            Intent occasion = new Intent(CategoryActivity.this, OccasionsActivity.class);
+            SystemClock.sleep(300);
+            startActivity(occasion);
+            onBackPressed();
 
-                break;
-            case R.id.button5:
-                Intent occasion = new Intent(CategoryActivity.this,
-                        OccasionsActivity.class);
-                SystemClock.sleep(300);
-                startActivity(occasion);
-                onBackPressed();
-                break;
-            case R.id.button6:
-                AlertDialog.Builder builder = new AlertDialog.Builder(
-                        CategoryActivity.this);
-                builder.setMessage(getResources().getString(
-                        R.string.ratethisapp_msg));
-                builder.setTitle(getResources().getString(
-                        R.string.ratethisapp_title));
-                builder.setPositiveButton(
-                        getResources().getString(R.string.rate_it),
-                        new DialogInterface.OnClickListener() {
+        } else if (id == R.id.button6) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(CategoryActivity.this);
+            builder.setMessage(getResources().getString(R.string.ratethisapp_msg));
+            builder.setTitle(getResources().getString(R.string.ratethisapp_title));
 
-                            @Override
-                            public void onClick(DialogInterface dialog,
-                                                int which) {
-                                // TODO Auto-generated method stub
-                                Intent fire = new Intent(
-                                        Intent.ACTION_VIEW,
-                                        Uri.parse("https://t.co/beu9yzisk9?" + getPackageName()));           //ru.quotes.reminder"));
-                                startActivity(fire);
+            builder.setPositiveButton(getResources().getString(R.string.rate_it), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent fire = new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("https://t.co/beu9yzisk9?" + getPackageName()));
+                    startActivity(fire);
+                }
+            });
 
-                            }
-                        });
+            builder.setNegativeButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
 
-                builder.setNegativeButton(
-                        getResources().getString(R.string.cancel),
-                        new DialogInterface.OnClickListener() {
+            dialog = builder.create();
+            dialog.show();
+            onBackPressed();
 
-                            @Override
-                            public void onClick(DialogInterface dialog,
-                                                int which) {
-                                // TODO Auto-generated method stub
-                                dialog.dismiss();
+        } else if (id == R.id.btnSetting) {
+            mSlidingPanel.closePane();
+            Intent i = new Intent(this, UserSettingActivity.class);
+            startActivityForResult(i, RESULT_SETTINGS);
 
-                            }
-                        });
-                dialog = builder.create();
-                dialog.show();
-                onBackPressed();
-                break;
-            case R.id.btnSetting:
-                mSlidingPanel.closePane();
-                Intent i = new Intent(this, UserSettingActivity.class);
-                startActivityForResult(i, RESULT_SETTINGS);
-                break;
-            case R.id.button7:
-                Intent About = new Intent(CategoryActivity.this,
-                        AboutActivity.class);
-                SystemClock.sleep(500);
-                startActivity(About);
-                onBackPressed();
-                break;
-
-            default:
-                break;
+        } else if (id == R.id.button7) {
+            Intent About = new Intent(CategoryActivity.this, AboutActivity.class);
+            SystemClock.sleep(500);
+            startActivity(About);
+            onBackPressed();
         }
-
-
-
-
-
-
     }
+
 }

@@ -2,20 +2,16 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
 android {
-    compileSdk 34
+    namespace 'com.walid.appmuslim'
+    compileSdk 35
 
     defaultConfig {
         applicationId 'com.walid.appmuslim'
-        minSdkVersion 21
-        targetSdkVersion 34
-        versionCode 17
-        versionName "2.2"
+        minSdkVersion 23
+        targetSdkVersion 35
+        versionCode 18
+        versionName "2.3"
         multiDexEnabled true
-        ndk {
-            ndk.abiFilters 'armeabi-v7a','arm64-v8a','x86','x86_64'
-        }
-
-
     }
 
     packagingOptions {
@@ -51,24 +47,21 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.android.material:material:1.12.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.browser:browser:1.8.0'
-    implementation 'androidx.recyclerview:recyclerview:1.3.2'
+    implementation 'androidx.recyclerview:recyclerview:1.4.0'
     implementation 'com.github.varunest:sparkbutton:1.0.6'
     implementation 'com.airbnb.android:lottie:5.2.0'
-    implementation 'com.github.glomadrian:Grav:1.1'
-    implementation 'hanks.xyz:htextview-library:0.1.5'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
-    implementation 'io.saeid:fab-loading:1.0.0'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.balysv:material-ripple:1.0.2'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
-    implementation 'com.google.firebase:firebase-messaging:24.0.0'
+    implementation 'com.google.firebase:firebase-messaging:24.1.2'
     implementation 'com.github.mjn1369:prettydialog:1.0.4'
     implementation 'com.android.support:multidex:1.0.3'
-    implementation 'androidx.work:work-runtime:2.9.0'
+    implementation 'androidx.work:work-runtime:2.10.2'
 }

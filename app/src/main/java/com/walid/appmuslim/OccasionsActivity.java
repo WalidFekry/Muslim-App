@@ -195,111 +195,86 @@ public class OccasionsActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.button0:
-                Intent Dashboard = new Intent(OccasionsActivity.this,
-                        MainActivity.class);
-                SystemClock.sleep(1000);
-                startActivity(Dashboard);
-                onBackPressed();
-                break;
+        int id = view.getId();
 
-            case R.id.button1:
-                Intent intent = new Intent(OccasionsActivity.this,
-                        AzkarsActivity.class);
-                intent.putExtra("mode", "allAzakers");
-                SystemClock.sleep(500);
-                startActivity(intent);
-                onBackPressed();
-                break;
-            case R.id.button2:
-                Intent quranmain = new Intent(OccasionsActivity.this,
-                        Quranlist.class);
-                SystemClock.sleep(500);
-                startActivity(quranmain);
-                onBackPressed();
-                break;
-            case R.id.button3:
-                Intent favorites = new Intent(OccasionsActivity.this,
-                        AzkarsActivity.class);
-                favorites.putExtra("mode", "isFavorite");
-                SystemClock.sleep(500);
-                startActivity(favorites);
-                onBackPressed();
-                break;
-            case R.id.button4:
-                Intent category = new Intent(OccasionsActivity.this,
-                        CategoryActivity.class);
-                SystemClock.sleep(500);
-                startActivity(category);
-                onBackPressed();
-                break;
-            case R.id.button5:
-                preferences = PreferenceManager
-                        .getDefaultSharedPreferences(getApplicationContext());
+        if (id == R.id.button0) {
+            Intent Dashboard = new Intent(OccasionsActivity.this, MainActivity.class);
+            SystemClock.sleep(1000);
+            startActivity(Dashboard);
+            onBackPressed();
 
-                Intent occasionaz = new Intent(OccasionsActivity.this,
-                        OccasionsActivity.class);
-                occasionaz.putExtra("mode", "occasions");
-                SystemClock.sleep(500);
-                startActivity(occasionaz);
-                onBackPressed();
-                break;
-            case R.id.button6:
-                AlertDialog.Builder builder = new AlertDialog.Builder(
-                        OccasionsActivity.this);
-                builder.setMessage(getResources().getString(
-                        R.string.ratethisapp_msg));
-                builder.setTitle(getResources().getString(
-                        R.string.ratethisapp_title));
-                builder.setPositiveButton(
-                        getResources().getString(R.string.rate_it),
-                        new DialogInterface.OnClickListener() {
+        } else if (id == R.id.button1) {
+            Intent intent = new Intent(OccasionsActivity.this, AzkarsActivity.class);
+            intent.putExtra("mode", "allAzakers");
+            SystemClock.sleep(500);
+            startActivity(intent);
+            onBackPressed();
 
-                            @Override
-                            public void onClick(DialogInterface dialog,
-                                                int which) {
-                                // TODO Auto-generated method stub
-                                Intent fire = new Intent(
-                                        Intent.ACTION_VIEW,
-                                        Uri.parse("https://t.co/beu9yzisk9?" + getPackageName()));           //ru.ironcodes.islamicwikipedia"));
-                                startActivity(fire);
+        } else if (id == R.id.button2) {
+            Intent quranmain = new Intent(OccasionsActivity.this, Quranlist.class);
+            SystemClock.sleep(500);
+            startActivity(quranmain);
+            onBackPressed();
 
-                            }
-                        });
+        } else if (id == R.id.button3) {
+            Intent favorites = new Intent(OccasionsActivity.this, AzkarsActivity.class);
+            favorites.putExtra("mode", "isFavorite");
+            SystemClock.sleep(500);
+            startActivity(favorites);
+            onBackPressed();
 
-                builder.setNegativeButton(
-                        getResources().getString(R.string.cancel),
-                        new DialogInterface.OnClickListener() {
+        } else if (id == R.id.button4) {
+            Intent category = new Intent(OccasionsActivity.this, CategoryActivity.class);
+            SystemClock.sleep(500);
+            startActivity(category);
+            onBackPressed();
 
-                            @Override
-                            public void onClick(DialogInterface dialog,
-                                                int which) {
-                                // TODO Auto-generated method stub
-                                dialog.dismiss();
+        } else if (id == R.id.button5) {
+            preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-                            }
-                        });
-                dialog = builder.create();
-                SystemClock.sleep(500);
-                dialog.show();
-                onBackPressed();
-                break;
-            case R.id.btnSetting:
-                mSlidingPanel.closePane();
-                Intent i = new Intent(this, UserSettingActivity.class);
-                startActivityForResult(i, RESULT_SETTINGS);
-                break;
+            Intent occasionaz = new Intent(OccasionsActivity.this, OccasionsActivity.class);
+            occasionaz.putExtra("mode", "occasions");
+            SystemClock.sleep(500);
+            startActivity(occasionaz);
+            onBackPressed();
 
-            case R.id.button7:
-                Intent About = new Intent(OccasionsActivity.this,
-                        AboutActivity.class);
-                SystemClock.sleep(500);
-                startActivity(About);
-                onBackPressed();
-                break;
-            default:
-                break;
+        } else if (id == R.id.button6) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(OccasionsActivity.this);
+            builder.setMessage(getResources().getString(R.string.ratethisapp_msg));
+            builder.setTitle(getResources().getString(R.string.ratethisapp_title));
+
+            builder.setPositiveButton(getResources().getString(R.string.rate_it), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent fire = new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("https://t.co/beu9yzisk9?" + getPackageName()));
+                    startActivity(fire);
+                }
+            });
+
+            builder.setNegativeButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+
+            dialog = builder.create();
+            SystemClock.sleep(500);
+            dialog.show();
+            onBackPressed();
+
+        } else if (id == R.id.btnSetting) {
+            mSlidingPanel.closePane();
+            Intent i = new Intent(this, UserSettingActivity.class);
+            startActivityForResult(i, RESULT_SETTINGS);
+
+        } else if (id == R.id.button7) {
+            Intent About = new Intent(OccasionsActivity.this, AboutActivity.class);
+            SystemClock.sleep(500);
+            startActivity(About);
+            onBackPressed();
         }
     }
+
 }

@@ -229,105 +229,72 @@ public class Quranlist extends AppCompatActivity implements View.OnClickListener
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
+        int id = view.getId();
 
-            case R.id.button0:
-                Intent Dashboard = new Intent(Quranlist.this,
-                        MainActivity.class);
+        if (id == R.id.button0) {
+            Intent Dashboard = new Intent(Quranlist.this, MainActivity.class);
+            SystemClock.sleep(250);
+            startActivity(Dashboard);
 
-                SystemClock.sleep(250);
-                startActivity(Dashboard);
-                break;
+        } else if (id == R.id.button1) {
+            Intent azkarall = new Intent(Quranlist.this, AzkarsActivity.class);
+            azkarall.putExtra("mode", "allAzakers");
+            SystemClock.sleep(250);
+            startActivity(azkarall);
 
-            case R.id.button1:
-                Intent azkarall = new Intent(Quranlist.this,
-                        AzkarsActivity.class);
-                azkarall.putExtra("mode", "allAzakers");
-                SystemClock.sleep(250);
-                startActivity(azkarall);
-                break;
-            case R.id.button2:
-                Intent quranmain = new Intent(Quranlist.this,
-                        Quranlist.class);
-                SystemClock.sleep(250);
-                startActivity(quranmain);
-                break;
-            case R.id.button3:
-                Intent favorites = new Intent(Quranlist.this,
-                        AzkarsActivity.class);
-                favorites.putExtra("mode", "isFavorite");
-                SystemClock.sleep(150);
-                startActivity(favorites);
+        } else if (id == R.id.button2) {
+            Intent quranmain = new Intent(Quranlist.this, Quranlist.class);
+            SystemClock.sleep(250);
+            startActivity(quranmain);
 
-                break;
-            case R.id.button4:
-                Intent categoryaz = new Intent(Quranlist.this,
-                        CategoryActivity.class);
-                SystemClock.sleep(150);
-                startActivity(categoryaz);
-                break;
-            case R.id.button5:
-                Intent occasions = new Intent(Quranlist.this,
-                        OccasionsActivity.class);
-                SystemClock.sleep(150);
-                startActivity(occasions);
-                break;
-            case R.id.button6:
-                AlertDialog.Builder builder = new AlertDialog.Builder(
-                        Quranlist.this);
-                builder.setMessage(getResources().getString(
-                        R.string.ratethisapp_msg));
-                builder.setTitle(getResources().getString(
-                        R.string.ratethisapp_title));
-                builder.setPositiveButton(
-                        getResources().getString(R.string.rate_it),
-                        new DialogInterface.OnClickListener() {
+        } else if (id == R.id.button3) {
+            Intent favorites = new Intent(Quranlist.this, AzkarsActivity.class);
+            favorites.putExtra("mode", "isFavorite");
+            SystemClock.sleep(150);
+            startActivity(favorites);
 
-                            @Override
-                            public void onClick(DialogInterface dialog,
-                                                int which) {
-                                // TODO Auto-generated method stub
-                                Intent fire = new Intent(
-                                        Intent.ACTION_VIEW,
-                                        Uri.parse("https://t.co/beu9yzisk9?" + getPackageName()));           //ru.quotes.reminder"));
-                                startActivity(fire);
+        } else if (id == R.id.button4) {
+            Intent categoryaz = new Intent(Quranlist.this, CategoryActivity.class);
+            SystemClock.sleep(150);
+            startActivity(categoryaz);
 
-                            }
-                        });
+        } else if (id == R.id.button5) {
+            Intent occasions = new Intent(Quranlist.this, OccasionsActivity.class);
+            SystemClock.sleep(150);
+            startActivity(occasions);
 
-                builder.setNegativeButton(
-                        getResources().getString(R.string.cancel),
-                        new DialogInterface.OnClickListener() {
+        } else if (id == R.id.button6) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(Quranlist.this);
+            builder.setMessage(getResources().getString(R.string.ratethisapp_msg));
+            builder.setTitle(getResources().getString(R.string.ratethisapp_title));
 
-                            @Override
-                            public void onClick(DialogInterface dialog,
-                                                int which) {
-                                // TODO Auto-generated method stub
-                                dialog.dismiss();
+            builder.setPositiveButton(getResources().getString(R.string.rate_it), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent fire = new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("https://t.co/beu9yzisk9?" + getPackageName()));
+                    startActivity(fire);
+                }
+            });
 
-                            }
-                        });
-                dialog = builder.create();
-                dialog.show();
-                break;
-            case R.id.btnSetting:
-                Intent i = new Intent(this, UserSettingActivity.class);
-                startActivityForResult(i, RESULT_SETTINGS);
-                break;
+            builder.setNegativeButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
 
+            dialog = builder.create();
+            dialog.show();
 
-            case R.id.button7:
-                Intent About = new Intent(Quranlist.this,
-                        AboutActivity.class);
-                SystemClock.sleep(150);
-                startActivity(About);
-                break;
+        } else if (id == R.id.btnSetting) {
+            Intent i = new Intent(this, UserSettingActivity.class);
+            startActivityForResult(i, RESULT_SETTINGS);
 
-
-
-
-            default:
-                break;
+        } else if (id == R.id.button7) {
+            Intent About = new Intent(Quranlist.this, AboutActivity.class);
+            SystemClock.sleep(150);
+            startActivity(About);
         }
     }
 

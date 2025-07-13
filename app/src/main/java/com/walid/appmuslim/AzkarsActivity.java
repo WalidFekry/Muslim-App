@@ -265,111 +265,83 @@ public class AzkarsActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
+        int id = view.getId();
 
-            case R.id.button0:
-                Intent Dashboard = new Intent(AzkarsActivity.this,
-                        MainActivity.class);
-                SystemClock.sleep(1000);
-                startActivity(Dashboard);
-                onBackPressed();
-                break;
+        if (id == R.id.button0) {
+            Intent Dashboard = new Intent(AzkarsActivity.this, MainActivity.class);
+            SystemClock.sleep(1000);
+            startActivity(Dashboard);
+            onBackPressed();
 
-            case R.id.button1:
-                Intent intent = new Intent(AzkarsActivity.this,
-                        AzkarsActivity.class);
-                intent.putExtra("mode", "allAzakers");
-                SystemClock.sleep(1000);
-                startActivity(intent);
-                onBackPressed();
-                break;
-            case R.id.button2:
+        } else if (id == R.id.button1) {
+            Intent intent = new Intent(AzkarsActivity.this, AzkarsActivity.class);
+            intent.putExtra("mode", "allAzakers");
+            SystemClock.sleep(1000);
+            startActivity(intent);
+            onBackPressed();
 
-                Intent author = new Intent(AzkarsActivity.this,
-                        OccasionsActivity.class);
-                SystemClock.sleep(1000);
-                startActivity(author);
-                onBackPressed();
-                break;
-            case R.id.button3:
-                Intent favorites = new Intent(AzkarsActivity.this,
-                        AzkarsActivity.class);
-                favorites.putExtra("mode", "isFavorite");
-                SystemClock.sleep(1000);
-                startActivity(favorites);
-                onBackPressed();
-                break;
-            case R.id.button4:
-                Intent category = new Intent(AzkarsActivity.this,
-                        CategoryActivity.class);
-                SystemClock.sleep(1000);
-                startActivity(category);
-                onBackPressed();
-                break;
-            case R.id.button5:
-                preferences = PreferenceManager
-                        .getDefaultSharedPreferences(getApplicationContext());
+        } else if (id == R.id.button2) {
+            Intent author = new Intent(AzkarsActivity.this, OccasionsActivity.class);
+            SystemClock.sleep(1000);
+            startActivity(author);
+            onBackPressed();
 
-                Intent quranmain = new Intent(AzkarsActivity.this,
-                        Quranlist.class);
+        } else if (id == R.id.button3) {
+            Intent favorites = new Intent(AzkarsActivity.this, AzkarsActivity.class);
+            favorites.putExtra("mode", "isFavorite");
+            SystemClock.sleep(1000);
+            startActivity(favorites);
+            onBackPressed();
 
-                startActivity(quranmain);
-                onBackPressed();
-                break;
-            case R.id.button6:
-                mSlidingPanel.closePane();
-                AlertDialog.Builder builder = new AlertDialog.Builder(
-                        AzkarsActivity.this);
-                builder.setMessage(getResources().getString(
-                        R.string.ratethisapp_msg));
-                builder.setTitle(getResources().getString(
-                        R.string.ratethisapp_title));
-                builder.setPositiveButton(
-                        getResources().getString(R.string.rate_it),
-                        new DialogInterface.OnClickListener() {
+        } else if (id == R.id.button4) {
+            Intent category = new Intent(AzkarsActivity.this, CategoryActivity.class);
+            SystemClock.sleep(1000);
+            startActivity(category);
+            onBackPressed();
 
-                            @Override
-                            public void onClick(DialogInterface dialog,
-                                                int which) {
-                                // TODO Auto-generated method stub
-                                Intent fire = new Intent(
-                                        Intent.ACTION_VIEW,
-                                        Uri.parse("https://t.co/beu9yzisk9?" + getPackageName()));           //ru.quotes.reminder"));
-                                startActivity(fire);
+        } else if (id == R.id.button5) {
+            preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            Intent quranmain = new Intent(AzkarsActivity.this, Quranlist.class);
+            startActivity(quranmain);
+            onBackPressed();
 
-                            }
-                        });
+        } else if (id == R.id.button6) {
+            mSlidingPanel.closePane();
 
-                builder.setNegativeButton(
-                        getResources().getString(R.string.cancel),
-                        new DialogInterface.OnClickListener() {
+            AlertDialog.Builder builder = new AlertDialog.Builder(AzkarsActivity.this);
+            builder.setMessage(getResources().getString(R.string.ratethisapp_msg));
+            builder.setTitle(getResources().getString(R.string.ratethisapp_title));
+            builder.setPositiveButton(getResources().getString(R.string.rate_it), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent fire = new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("https://t.co/beu9yzisk9?" + getPackageName()));
+                    startActivity(fire);
+                }
+            });
 
-                            @Override
-                            public void onClick(DialogInterface dialog,
-                                                int which) {
-                                // TODO Auto-generated method stub
-                                dialog.dismiss();
+            builder.setNegativeButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
 
-                            }
-                        });
-                dialog = builder.create();
-                dialog.show();
-                onBackPressed();
-                break;
-            case R.id.btnSetting:
-                mSlidingPanel.closePane();
-                Intent i = new Intent(this, UserSettingActivity.class);
-                startActivityForResult(i, RESULT_SETTINGS);
-                break;
-            case R.id.button7:
-                Intent About = new Intent(AzkarsActivity.this,
-                        AboutActivity.class);
-                SystemClock.sleep(500);
-                startActivity(About);
-                onBackPressed();
-                break;
-            default:
-                break;
+            dialog = builder.create();
+            dialog.show();
+            onBackPressed();
+
+        } else if (id == R.id.btnSetting) {
+            mSlidingPanel.closePane();
+            Intent i = new Intent(this, UserSettingActivity.class);
+            startActivityForResult(i, RESULT_SETTINGS);
+
+        } else if (id == R.id.button7) {
+            Intent About = new Intent(AzkarsActivity.this, AboutActivity.class);
+            SystemClock.sleep(500);
+            startActivity(About);
+            onBackPressed();
         }
     }
+
 }

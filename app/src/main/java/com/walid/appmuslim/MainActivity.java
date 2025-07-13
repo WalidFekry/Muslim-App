@@ -384,7 +384,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         sendIntent.setAction(Intent.ACTION_SEND);
                         sendIntent.putExtra(Intent.EXTRA_SUBJECT, "  المسلم - الطريق إلى الهداية ");
                         sendIntent.putExtra(Intent.EXTRA_TEXT, "\n" + getResources().getString(R.string.aboutapp) + "\n" +
-                                "تفضل رابط التطبيق  https://t.co/beu9yzisk9 \n");
+                                "تفضل رابط التطبيق  https://play.google.com/store/apps/details?id=com.walid.appmuslim \n");
                         sendIntent.setType("text/plain");
                         startActivity(Intent.createChooser(sendIntent, "مشاركه تطبيق المسلم - الطريق إلى الهداية مع الاصدقاء:"));
 
@@ -393,7 +393,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "تقييم التطبيق",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://t.co/beu9yzisk9")));
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.walid.appmuslim")));
                     }
                 });
         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "خروج",
@@ -429,96 +429,62 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-
         int id = item.getItemId();
 
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                if(mSlidingPanel.isOpen()){
-                    mSlidingPanel.closePane();
-                }else{
-                    mSlidingPanel.openPane();
-                }
-                break;
+        if (id == android.R.id.home) {
+            if (mSlidingPanel.isOpen()) {
+                mSlidingPanel.closePane();
+            } else {
+                mSlidingPanel.openPane();
+            }
 
-            case R.id.bahasa_lang:
-                langholder  = ("id");
+        } else if (id == R.id.bahasa_lang) {
+            langholder = "id";
+            Toast.makeText(MainActivity.this, "You have selected Bahasa Language", Toast.LENGTH_SHORT).show();
+            saveuserlang();
+            DATABASE_NAME = "azkarId.db";
+            db.openDataBase();
+            setLocale(langholder);
 
-                Toast.makeText(MainActivity.this,
-                        "You have selected Bahasa Language", Toast.LENGTH_SHORT)
-                        .show();
-                saveuserlang ();
-                DATABASE_NAME=("azkarId.db");
-                db.openDataBase();
-                setLocale(langholder);
+        } else if (id == R.id.turk_lang) {
+            langholder = "tr";
+            Toast.makeText(MainActivity.this, "You have selected Türkçe Language", Toast.LENGTH_SHORT).show();
+            saveuserlang();
+            DATABASE_NAME = "azkarTr.db";
+            db.openDataBase();
+            setLocale(langholder);
 
-                break;
+        } else if (id == R.id.arabic_lang) {
+            langholder = "ar";
+            Toast.makeText(MainActivity.this, "You have selected Arabic Language", Toast.LENGTH_SHORT).show();
+            saveuserlang();
+            DATABASE_NAME = "azkarabic.db";
+            db.openDataBase();
+            setLocale(langholder);
 
-            case R.id.turk_lang:
-                langholder  = ("tr");
-                Toast.makeText(MainActivity.this,
-                        "You have selected Türkçe Language", Toast.LENGTH_SHORT)
-                        .show();
-                saveuserlang ();
-                DATABASE_NAME=("azkarTr.db");
-                db.openDataBase();
-                setLocale(langholder);
-                break;
+        } else if (id == R.id.russian_lang) {
+            langholder = "ru";
+            Toast.makeText(MainActivity.this, "You have selected Arabic Language", Toast.LENGTH_SHORT).show(); // ممكن تعدل الرسالة هنا لو تقصد Russian
+            saveuserlang();
+            DATABASE_NAME = "azkarRU.db";
+            db.openDataBase();
+            setLocale(langholder);
 
+        } else if (id == R.id.malay_labg) {
+            langholder = "ms";
+            Toast.makeText(MainActivity.this, "You have selected Malay Language", Toast.LENGTH_SHORT).show();
+            saveuserlang();
+            DATABASE_NAME = "azkarMs.db";
+            db.openDataBase();
+            setLocale(langholder);
 
-            case R.id.arabic_lang:
-                langholder  = ("ar");
-                Toast.makeText(MainActivity.this,
-                        "You have selected Arabic Language", Toast.LENGTH_SHORT)
-                        .show();
-                saveuserlang ();
-                DATABASE_NAME=("azkarabic.db");
-                db.openDataBase();
-                setLocale(langholder);
-                break;
-
-
-            case R.id.russian_lang:
-                langholder  = ("ru");
-                Toast.makeText(MainActivity.this,
-                        "You have selected Arabic Language", Toast.LENGTH_SHORT)
-                        .show();
-                saveuserlang ();
-                DATABASE_NAME=("azkarRU.db");
-                db.openDataBase();
-                setLocale(langholder);
-                break;
-
-
-            case R.id.malay_labg:
-                langholder  = ("ms");
-                Toast.makeText(MainActivity.this,
-                        "You have selected Malay Language", Toast.LENGTH_SHORT)
-                        .show();
-                saveuserlang ();
-                DATABASE_NAME=("azkarMs.db");
-                db.openDataBase();
-                setLocale(langholder);
-                break;
-
-            case R.id.eng_labg:
-                langholder  = ("en");
-                Toast.makeText(MainActivity.this,
-                        "You have selected Arabic Language", Toast.LENGTH_SHORT)
-                        .show();
-                saveuserlang ();
-                DATABASE_NAME=("azkarenglish.db");
-                db.openDataBase();
-                setLocale(langholder);
-                break;
-
-
-
-            default:
-                break;
+        } else if (id == R.id.eng_labg) {
+            langholder = "en";
+            Toast.makeText(MainActivity.this, "You have selected English Language", Toast.LENGTH_SHORT).show(); // عدلت الرسالة بدل "Arabic"
+            saveuserlang();
+            DATABASE_NAME = "azkarenglish.db";
+            db.openDataBase();
+            setLocale(langholder);
         }
 
         return true;
@@ -553,111 +519,82 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
+        int id = view.getId();
 
-            case R.id.button0:
-                Intent Dashboard = new Intent(MainActivity.this,
-                        MainActivity.class);
-                SystemClock.sleep(250);
-                startActivity(Dashboard);
-                onBackPressed();
-                break;
+        if (id == R.id.button0) {
+            Intent Dashboard = new Intent(MainActivity.this, MainActivity.class);
+            SystemClock.sleep(250);
+            startActivity(Dashboard);
+            onBackPressed();
 
-            case R.id.button1:
-                Intent azkarall = new Intent(MainActivity.this,
-                        AzkarsActivity.class);
-                azkarall.putExtra("mode", "allAzakers");
-                SystemClock.sleep(250);
-                startActivity(azkarall);
-                onBackPressed();
-                break;
-            case R.id.button2:
-                Intent holyquran = new Intent(MainActivity.this,
-                        Quranlist.class);
-                SystemClock.sleep(250);
-                startActivity(holyquran);
-                onBackPressed();
-                break;
-            case R.id.button3:
-                Intent sendIntent = new Intent();
-                sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_SUBJECT," تطبيق المسلم ");
-                sendIntent.putExtra(Intent.EXTRA_TEXT,"\n" +getResources().getString(R.string.aboutapp)+"\n"+
-                        "تفضل رابط تطبيق المسلم  https://t.co/beu9yzisk9 \n");
-                sendIntent.setType("text/plain");
-                startActivity(sendIntent);
-                break;
-            case R.id.button99:
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/dev?id=6257553101128037563")));
-                break;
-            case R.id.button4:
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/groups/440403217380641")));
-                break;
+        } else if (id == R.id.button1) {
+            Intent azkarall = new Intent(MainActivity.this, AzkarsActivity.class);
+            azkarall.putExtra("mode", "allAzakers");
+            SystemClock.sleep(250);
+            startActivity(azkarall);
+            onBackPressed();
 
-            case R.id.button5:
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/App.Maktbti")));
-                break;
-            case R.id.button6:
-                AlertDialog.Builder builder = new AlertDialog.Builder(
-                        MainActivity.this);
-                builder.setMessage(getResources().getString(
-                        R.string.ratethisapp_msg));
-                builder.setTitle(getResources().getString(
-                        R.string.ratethisapp_title));
-                builder.setPositiveButton(
-                        getResources().getString(R.string.rate_it),
-                        new DialogInterface.OnClickListener() {
+        } else if (id == R.id.button2) {
+            Intent holyquran = new Intent(MainActivity.this, Quranlist.class);
+            SystemClock.sleep(250);
+            startActivity(holyquran);
+            onBackPressed();
 
-                            @Override
-                            public void onClick(DialogInterface dialog,
-                                                int which) {
-                                // TODO Auto-generated method stub
-                                Intent fire = new Intent(
-                                        Intent.ACTION_VIEW,
-                                        Uri.parse("https://t.co/beu9yzisk9?" + getPackageName()));           //ru.quotes.reminder"));
-                                startActivity(fire);
+        } else if (id == R.id.button3) {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_SUBJECT, " تطبيق المسلم ");
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "\n" + getResources().getString(R.string.aboutapp) + "\n" +
+                    "تفضل رابط تطبيق المسلم  https://play.google.com/store/apps/details?id=com.walid.appmuslim \n");
+            sendIntent.setType("text/plain");
+            startActivity(sendIntent);
 
-                            }
-                        });
+        } else if (id == R.id.button99) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/dev?id=6257553101128037563")));
 
-                builder.setNegativeButton(
-                        getResources().getString(R.string.cancel),
-                        new DialogInterface.OnClickListener() {
+        } else if (id == R.id.button4) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/groups/440403217380641")));
 
-                            @Override
-                            public void onClick(DialogInterface dialog,
-                                                int which) {
-                                // TODO Auto-generated method stub
-                                dialog.dismiss();
+        } else if (id == R.id.button5) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/App.Maktbti")));
 
-                            }
-                        });
-                dialog = builder.create();
-                dialog.show();
-                break;
-            case R.id.btnSetting:
-                Intent i = new Intent(this, UserSettingActivity.class);
-                startActivityForResult(i, RESULT_SETTINGS);
-                break;
+        } else if (id == R.id.button6) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            builder.setMessage(getResources().getString(R.string.ratethisapp_msg));
+            builder.setTitle(getResources().getString(R.string.ratethisapp_title));
+            builder.setPositiveButton(getResources().getString(R.string.rate_it), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent fire = new Intent(Intent.ACTION_VIEW, Uri.parse("https://t.co/beu9yzisk9?" + getPackageName()));
+                    startActivity(fire);
+                }
+            });
 
+            builder.setNegativeButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
 
-            case R.id.button7:
-                Intent About = new Intent(MainActivity.this,
-                        AboutActivity.class);
-                SystemClock.sleep(500);
-                startActivity(About);
-                onBackPressed();
-                break;
+            dialog = builder.create();
+            dialog.show();
 
-            case R.id.button17:
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://sites.google.com/view/appmuslim/home")));
-                break;
+        } else if (id == R.id.btnSetting) {
+            Intent i = new Intent(this, UserSettingActivity.class);
+            startActivityForResult(i, RESULT_SETTINGS);
 
+        } else if (id == R.id.button7) {
+            Intent About = new Intent(MainActivity.this, AboutActivity.class);
+            SystemClock.sleep(500);
+            startActivity(About);
+            onBackPressed();
 
-            default:
-                break;
+        } else if (id == R.id.button17) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://sites.google.com/view/appmuslim/home")));
         }
     }
+
 
 
 
