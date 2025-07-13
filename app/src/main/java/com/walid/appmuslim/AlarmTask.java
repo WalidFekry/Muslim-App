@@ -6,6 +6,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 
 
 /**
@@ -31,8 +32,11 @@ public class  AlarmTask implements Runnable{
     public void run() {
         Intent intent = new Intent(context, NotifyService.class);
         intent.putExtra(NotifyService.INTENT_NOTIFY, true);
-        PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, 0);
+
+        PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
 
         am.setRepeating(AlarmManager.RTC_WAKEUP, date.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
     }
+
+
 }
