@@ -1,34 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.walid.appmuslim">
+    >
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32"
+        tools:ignore="ScopedStorage" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="com.google.android.gms.permission.AD_ID" tools:node="remove"/>
-
+    <uses-permission
+        android:name="com.google.android.gms.permission.AD_ID"
+        tools:node="remove" />
 
 
     <application
         android:name="com.walid.appmuslim.MyApplication"
         android:allowBackup="true"
-        android:appComponentFactory="whateverString"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/GreenActionBarTheme"
-
-        tools:replace="android:appComponentFactory">
+        >
 
 
         <activity
             android:name="com.walid.appmuslim.SplashActivity"
             android:configChanges="orientation|screenSize"
             android:exported="true"
-            android:screenOrientation="portrait"
             android:theme="@style/APP">
 
             <intent-filter>
@@ -42,7 +45,6 @@
             android:name="com.walid.appmuslim.OccasionsActivity"
             android:exported="true"
             android:label="@string/title_activity_occasions"
-            android:screenOrientation="portrait"
             android:theme="@style/MenuNavigation3Theme">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
@@ -62,16 +64,13 @@
         <activity
             android:name="com.walid.appmuslim.CategoryActivity"
             android:label="@string/title_activity_category"
-            android:screenOrientation="portrait"
             android:theme="@style/MenuNavigation3Theme" />
         <activity
             android:name="com.walid.appmuslim.AzkarActivity"
-            android:label="@string/title_activity_azkar"
-            android:screenOrientation="portrait" />
+            android:label="@string/title_activity_azkar" />
         <activity
             android:name="com.walid.appmuslim.AzkarsActivity"
             android:label="@string/title_activity_azkars"
-            android:screenOrientation="portrait"
             android:theme="@style/MenuNavigation3Theme">
 
         </activity>
@@ -79,7 +78,7 @@
         <activity
             android:name="com.walid.appmuslim.AboutActivity"
             android:label="@string/title_contactus"
-            android:theme="@style/GreenActionBarTheme"></activity>
+            android:theme="@style/GreenActionBarTheme" />
 
 
         <activity
@@ -95,14 +94,11 @@
         <activity
             android:name="com.walid.appmuslim.Quranlist"
             android:label="@string/title_activity_quran"
-            android:screenOrientation="portrait"
             android:theme="@style/MenuNavigation3Theme" />
 
 
         <activity
             android:name="com.walid.appmuslim.MainActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
             android:theme="@style/MenuNavigation3Theme" />
 
         <meta-data
@@ -110,8 +106,7 @@
             android:value="com.walid.appmuslim.MainActivity" />
         <activity
             android:name="com.walid.appmuslim.UserSettingActivity"
-            android:label="@string/title_activity_user_setting"
-            android:screenOrientation="portrait" />
+            android:label="@string/title_activity_user_setting" />
 
 
         <receiver
